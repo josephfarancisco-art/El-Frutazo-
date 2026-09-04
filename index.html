@@ -3,301 +3,695 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Frutazo - Menú Digital</title>
-    <!-- FontAwesome para Iconos -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <title>Menú - Frutazo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --rojo: #C61A1A;
-            --verde: #043625;
-            --verde-claro: #064E35;
-            --oro: #E1A91B;
-            --blanco: #FFFFFF;
-            --gris-claro: #F9F9F9;
+            --primary-red: #d32f2f;
+            --dark-red: #b71c1c;
+            --brand-green: #113c24;
+            --dark-green: #0a2617;
+            --accent-yellow: #ffeb3b;
+            --light-bg: #f9f9f9;
+            --text-color: #333333;
+            --white: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--gris-claro);
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        /* Encabezado */
         header {
-            background-color: var(--verde);
-            color: var(--blanco);
+            background: linear-gradient(135deg, var(--brand-green), var(--dark-green));
+            color: var(--white);
             text-align: center;
-            padding: 2.5rem 1rem;
-            border-bottom: 6px solid var(--rojo);
-            position: relative;
+            padding: 3rem 1rem;
+            border-bottom: 6px solid var(--primary-red);
         }
 
         header h1 {
             font-size: 3rem;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: 2px;
-            color: var(--blanco);
-            text-shadow: 2px 2px var(--rojo);
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            color: var(--white);
         }
 
         header p {
             font-size: 1.2rem;
-            color: var(--oro);
-            font-weight: 600;
+            margin-top: 0.5rem;
+            color: #e0e0e0;
         }
 
-        /* Banner de Promoción */
+        /* Promo Banner */
         .promo-banner {
-            background-color: var(--rojo);
-            color: var(--blanco);
+            background-color: var(--accent-yellow);
+            color: var(--dark-green);
             text-align: center;
-            padding: 0.8rem 1rem;
+            padding: 1rem;
+            font-weight: 700;
             font-size: 1.1rem;
-            font-weight: bold;
-            letter-spacing: 1px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
         }
 
-        .promo-banner i {
-            color: var(--oro);
-            margin-right: 8px;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+            100% { transform: scale(1.01); }
         }
 
-        /* Contenedor Principal */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
 
-        /* Secciones del Menú */
-        .menu-section {
-            margin-bottom: 3rem;
+        section {
+            background: var(--brand-green);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--primary-red);
         }
 
         .section-title {
-            background-color: var(--rojo);
-            color: var(--blanco);
-            padding: 0.6rem 1.5rem;
-            font-size: 1.5rem;
-            display: inline-block;
-            border-radius: 5px;
-            margin-bottom: 1.5rem;
-            box-shadow: 3px 3px 0px var(--verde);
+            background-color: var(--primary-red);
+            color: var(--white);
+            text-align: center;
+            padding: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Grid de Platillos */
-        .menu-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        .menu-card {
-            background-color: var(--blanco);
+        .item-card {
+            background: var(--white);
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            border: 1px solid #ECECEC;
-            transition: transform 0.3s ease;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
-        .menu-card:hover {
+        .item-card:hover {
             transform: translateY(-5px);
         }
 
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #EEE;
-        }
-
-        .card-body {
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            color: var(--verde);
+        .item-info h3 {
+            color: var(--brand-green);
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
-        .card-desc {
+        .item-info p {
             font-size: 0.9rem;
             color: #666;
             margin-bottom: 1rem;
-            line-height: 1.4;
-            flex-grow: 1;
         }
 
-        .card-meta {
+        .item-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
         }
 
-        .card-price {
+        .price {
             font-size: 1.3rem;
-            color: var(--rojo);
-            font-weight: 800;
+            font-weight: 700;
+            color: var(--primary-red);
         }
 
         .btn-order {
-            background-color: var(--verde);
-            color: var(--blanco);
+            background-color: #25d366;
+            color: var(--white);
             border: none;
             padding: 0.6rem 1rem;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
+            gap: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
         }
 
         .btn-order:hover {
-            background-color: var(--rojo);
+            background-color: #128c7e;
         }
 
-        /* Anuncio Fijo Inferior */
-        .fixed-announcement {
-            background-color: var(--verde);
-            color: var(--blanco);
-            text-align: center;
-            padding: 1rem;
-            font-weight: 700;
-            border-top: 4px solid var(--oro);
-            margin-top: 4rem;
-        }
-        
-        .fixed-announcement span {
-            color: var(--oro);
-            font-size: 1.2rem;
-        }
-
-        /* Footer y Redes Sociales */
+        /* Footer */
         footer {
-            background-color: #111;
-            color: #AAA;
+            background-color: var(--dark-green);
+            color: var(--white);
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 3rem 1.5rem;
+            border-top: 6px solid var(--primary-red);
         }
 
-        .social-links {
+        .social-icons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-icons a {
+            background: var(--primary-red);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .delivery-info {
+            font-size: 1.1rem;
             margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--accent-yellow);
         }
 
-        .social-links a {
-            color: var(--blanco);
-            font-size: 1.6rem;
-            transition: color 0.2s;
-        }
-
-        .social-links a.fb:hover { color: #1877F2; }
-        .social-links a.tk:hover { color: #010101; }
-        .social-links a.maps:hover { color: #EA4335; }
-        .social-links a.wa:hover { color: #25D366; }
-
-        footer p {
-            font-size: 0.85rem;
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Banner Superior de Alerta de Promoción -->
-    <div class="promo-banner">
-        <i class="fa-solid fa-star-exclamation"></i> ¡TODOS LOS JUEVES: REFRESCO TOTALMENTE GRATIS! <i class="fa-solid fa-star-exclamation"></i>
-    </div>
-
-    <!-- Encabezado -->
     <header>
-        <h1>EL FRUTAZO</h1>
-        <p><i class="fa-solid fa-motorcycle"></i> SULA FREE DELIVERY | Pide Ya: 9815-1121</p>
+        <h1>Frutazo</h1>
+        <p>¡El sabor que te encanta, directo a tu puerta!</p>
     </header>
+
+    <div class="promo-banner">
+        <i class="fa-solid fa-gift"></i> ¡ATENCIÓN ESTUDIANTES! Todos los miércoles y jueves tenemos REFRESCO GRATIS en todos tus pedidos. <i class="fa-solid fa-gift"></i>
+    </div>
 
     <div class="container">
 
-        <!-- SECCIÓN HAMBURGUESAS -->
-        <section class="menu-section">
-            <h2 class="section-title">Hamburguesas</h2>
-            <div class="menu-grid">
-                <!-- Hamburguesa Clásica -->
-                <div class="menu-card">
-                    <img src="hamburguesa_clasica.jpg" alt="Hamburguesa Clásica" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Hamburguesa Clásica (Combo)</h3>
-                        <p class="card-desc">4 onz de res, vegetales frescos, aderezo especial y papas fritas.</p>
-                        <div class="card-meta">
-                            <span class="card-price">L 130</span>
-                            <button class="btn-order" onclick="enviarPedido('Hamburguesa Clásica (Combo)', 'L 130')">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
+        <section>
+            <div class="section-title">Hamburguesas</div>
+            <div class="grid">
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Clásica (Sola)</h3>
+                        <p>4 onz de res, vegetales y aderezo especial.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 100</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Clásica Sola', 'L 100')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
-                <!-- Hamburguesa con Tocino -->
-                <div class="menu-card">
-                    <img src="hamburguesa_tocino.jpg" alt="Hamburguesa con Tocino" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Hamburguesa con Tocino (Combo)</h3>
-                        <p class="card-desc">4 onz de res, crujiente tocino, vegetales, aderezo especial y papas fritas.</p>
-                        <div class="card-meta">
-                            <span class="card-price">L 135</span>
-                            <button class="btn-order" onclick="enviarPedido('Hamburguesa con Tocino (Combo)', 'L 135')">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Clásica (Combo)</h3>
+                        <p>4 onz de res, vegetales, aderezo, papas y bebida.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 155</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Clásica Combo', 'L 155')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
-                <!-- Hamburguesa Doble Carne -->
-                <div class="menu-card">
-                    <img src="hamburguesa_doble.jpg" alt="Hamburguesa Doble Carne" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Hamburguesa Doble Carne (Combo)</h3>
-                        <p class="card-desc">8 onz de jugosa res, tocino, vegetales, aderezo especial y papas fritas.</p>
-                        <div class="card-meta">
-                            <span class="card-price">L 170</span>
-                            <button class="btn-order" onclick="enviarPedido('Hamburguesa Doble Carne (Combo)', 'L 170')">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
-                        </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa con Tocino (Sola)</h3>
+                        <p>4 onz de res, tocino, vegetales y aderezo especial.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 110</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa con Tocino Sola', 'L 110')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa con Tocino (Combo)</h3>
+                        <p>4 onz de res, tocino, vegetales, aderezo, papas y bebida.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 160</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa con Tocino Combo', 'L 160')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa de Pollo (Sola)</h3>
+                        <p>Pollo, vegetales y aderezo especial.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 125</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa de Pollo Sola', 'L 125')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa de Pollo (Combo)</h3>
+                        <p>Pollo, vegetales, aderezo, papas y bebida.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 170</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa de Pollo Combo', 'L 170')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Doble Carne (Sola)</h3>
+                        <p>8 onz de res, tocino, vegetales y aderezo especial.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 140</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Doble Carne Sola', 'L 140')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Doble Carne (Combo)</h3>
+                        <p>8 onz de res, tocino, vegetales, aderezo, papas y bebida.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 195</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Doble Carne Combo', 'L 195')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Mixta (Sola)</h3>
+                        <p>4 onz de res, pollo, vegetales y aderezo especial.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 150</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Mixta Sola', 'L 150')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Mixta (Combo)</h3>
+                        <p>4 onz de res, pollo, vegetales, aderezo, papas y bebida.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 205</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Mixta Combo', 'L 205')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Triple Carne (Sola)</h3>
+                        <p>12 onz de res, tocino, vegetales y aderezo especial.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 170</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Triple Carne Sola', 'L 170')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Hamburguesa Triple Carne (Combo)</h3>
+                        <p>12 onz de res, tocino, vegetales, aderezo, papas y bebida.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 225</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Hamburguesa Triple Carne Combo', 'L 225')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN COMBOS -->
-        <section class="menu-section">
-            <h2 class="section-title">Combos Grandes</h2>
-            <div class="menu-grid">
-                <!-- Combo Personal -->
-                <div class="menu-card">
-                    <img src="combo_personal.jpg" alt="Combo Personal" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">Combo Personal</h3>
-                        <p class="card-desc">Hamburguesa clásica, 5 alitas en salsa (BBQ o Búfalo), papas fritas, Coca-Cola medio y aderezos.</p>
-                        <div class="card-meta">
-                            <span class="card-price">L 270</span>
-                            <button class="btn-order" onclick="enviarPedido('Combo Personal', 'L 270')">
-                                <i class="fa-brands fa-whatsapp"></i> Pedir
-                            </button>
+        <section>
+            <div class="section-title">Combos Especiales</div>
+            <div class="grid">
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Combo Personal</h3>
+                        <p>Hamburguesa clásica, 5 alitas en salsa (bbq o búfalo), papas fritas, Coca-cola medio y aderezos.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 270</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Combo Personal', 'L 270')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Combo Disfrutazo</h3>
+                        <p>Hamburguesa con tocino, 5 chicken fingers en salsa, orden de papas, Coca-cola 1.1L y aderezos.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 350</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Combo Disfrutazo', 'L 350')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Combo Amigo</h3>
+                        <p>2 Hamburguesas con tocino, 5 chicken fingers y 5 alitas en salsa, orden de papas, Coca-cola 1.5L y aderezos.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 550</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Combo Amigo', 'L 550')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Combo Familiar</h3>
+                        <p>4 Hamburguesas clásicas, 10 chicken fingers y 10 alitas en salsa, orden de papas, Coca-cola 2 litros y aderezos.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 1050</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Combo Familiar', 'L 1050')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Platillos, Alitas & Fingers</div>
+            <div class="grid">
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Alitas - Combo Completo</h3>
+                        <p>Incluye aderezo ranch, queso cheddar, salsa BBQ/Búfalo, 5 unidades, papas y ensalada.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 175</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Alitas - Combo Completo', 'L 175')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Alitas - Sin Ensalada</h3>
+                        <p>Incluye salsa BBQ/Búfalo, 5 unidades, aderezos y papas.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 170</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Alitas - Sin Ensalada', 'L 170')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Alitas - Combo Económico</h3>
+                        <p>4 unidades (BBQ/Búfalo), papas y aderezo ranch.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 150</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Alitas - Combo Económico', 'L 150')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Chicken Fingers - Combo Completo</h3>
+                        <p>Incluye aderezo ranch, queso cheddar, salsa, 5 unidades, papas y ensalada.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 175</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Chicken Fingers - Combo Completo', 'L 175')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Chicken Fingers - Sin Ensalada</h3>
+                        <p>Incluye 5 unidades, papas, salsas y aderezos.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 170</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Chicken Fingers - Sin Ensalada', 'L 170')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Chicken Fingers - Combo Económico</h3>
+                        <p>4 unidades (BBQ/Búfalo), papas y aderezo ranch.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 150</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Chicken Fingers - Combo Económico', 'L 150')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Salchipapa Normal</h3>
+                        <p>Papas fritas, tocino, salchicha de pollo, aderezos y salsa kétchup.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 140</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salchipapa Normal', 'L 140')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Salchipapa con Pollo</h3>
+                        <p>Papas fritas, tocino, salchicha de pollo, pollo, aderezos y salsa kétchup.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 180</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salchipapa con Pollo', 'L 180')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>Salchipapa con Res</h3>
+                        <p>Papas fritas, tocino, salchicha de pollo, res, aderezos y salsa kétchup.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 200</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salchipapa con Res', 'L 200')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Alitas o Fingers (Solo)</div>
+            <div class="grid">
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>5 Alitas o Fingers</h3>
+                        <p>Porción individual.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 125</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('5 Alitas o Fingers', 'L 125')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>10 Alitas o Fingers</h3>
+                        <p>Porción mediana.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 250</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('10 Alitas o Fingers', 'L 250')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>20 Alitas o Fingers</h3>
+                        <p>Porción grande.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 500</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('20 Alitas o Fingers', 'L 500')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info">
+                        <h3>40 Alitas o Fingers</h3>
+                        <p>Porción familiar/grupal.</p>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">L 1000</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('40 Alitas o Fingers', 'L 1000')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Extras y Salsas</div>
+            <div class="grid">
+                <div class="item-card">
+                    <div class="item-info"><h3>Alitas (Extra)</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 25</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Extra Alitas', 'L 25')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Fingers (Extra)</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 25</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Extra Fingers', 'L 25')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Torta de Res (Extra)</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 30</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Extra Torta de Res', 'L 30')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Ensalada (Extra)</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 15</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Extra Ensalada', 'L 15')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Papas (Extra)</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 40</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Extra Papas', 'L 40')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Tocino (Extra)</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 10</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Extra Tocino', 'L 10')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Salsa Aderezo Ranch</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 10</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salsa Aderezo Ranch', 'L 10')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Salsa Búfalo</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 10</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salsa Búfalo', 'L 10')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Salsa Queso Cheddar</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 10</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salsa Queso Cheddar', 'L 10')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Salsa Barbacoa</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 10</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Salsa Barbacoa', 'L 10')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">Bebidas y Postres</div>
+            <div class="grid">
+                <div class="item-card">
+                    <div class="item-info"><h3>Chamoyada de Mango</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 80</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Chamoyada de Mango', 'L 80')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Chamoyada de Maracuyá</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 80</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Chamoyada de Maracuyá', 'L 80')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Chamoyada de Fresa</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 85</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Chamoyada de Fresa', 'L 85')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Frappe de Oreo</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 80</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Frappe de Oreo', 'L 80')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Frappe de Chicle</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 85</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Frappe de Chicle', 'L 85')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-info"><h3>Frappe de Fresa</h3></div>
+                    <div class="item-footer">
+                        <span class="price">L 85</span>
+                        <a href="#" class="btn-order" onclick="orderWhatsApp('Frappe de Fresa', 'L 85')"><i class="fa-brands fa-whatsapp"></i> Pedir</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="delivery-info">
+            <i class="fa-solid fa-motorcycle"></i> SULA FREE DELIVERY PÍDE YA! 9815-1121
+        </div>
+        <p>¡Síguenos en nuestras redes sociales y ubícanos!</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/1Hj5rKxi7N/?mibextid=wwXIfr" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@elfrutazo?_r=1&_t=ZS-99STUwWVhJ7" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://maps.app.goo.gl/W2mdu79vdGjuqSgr9?g_st=ic" target="_blank" title="Google Maps"><i class="fa-solid fa-location-dot"></i></a>
+            <a href="https://wa.me/50498151121" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2026 Frutazo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function orderWhatsApp(itemName, itemPrice) {
+            const phoneNumber = "50498151121";
+            const message = `¡Hola! Me gustaría ordenar el siguiente platillo:\n\n*${itemName}* - ${itemPrice}\n\n¿Me confirman para realizar el pedido?`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
